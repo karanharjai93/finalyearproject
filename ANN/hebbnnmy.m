@@ -27,6 +27,7 @@ toc
 R=X*w'+b ;
 th=mean(R);
 RX=R>=th;
+%RX= round(sigmoid(R));
 accuracy = mean(double(RX==y) * 100) 
 parameters(RX,y);
 

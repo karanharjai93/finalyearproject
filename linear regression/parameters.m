@@ -1,5 +1,5 @@
 % computing comparison parameters
-function [TP,TN,FP,FN]=parameters(p,y)
+function [Accuracy,Precision,Sensitivity,Specificity,F1_Score]=parameters(p,y)
 
 
 %computing confusion matrix
@@ -20,19 +20,21 @@ for i=1:m
         FP =FP +1;
     end
 end
-fprintf('True positive =  %f \n', TP);
-fprintf('True negative =  %f \n', TN);
-fprintf('False positive =  %f \n', FP);
-fprintf('False negative =  %f \n', FN);
+% fprintf('True positive =  %f \n', TP);
+% fprintf('True negative =  %f \n', TN);
+% fprintf('False positive =  %f \n', FP);
+% fprintf('False negative =  %f \n', FN);
     
 Accuracy =(TP+TN)/(TP+TN+FN+FP);
-fprintf(' Accuracy: %f\n',Accuracy );
+%fprintf(' Accuracy: %f\n',Accuracy );
 Precision = (TP)/(TP+FP);
-fprintf(' Precision: %f\n',Precision );
+%fprintf(' Precision: %f\n',Precision );
 Sensitivity = (TP)/(TP+FN);
-fprintf(' Sensitivity: %f\n', Sensitivity);
-fprintf(' Specificity: %f\n', (TN)/(TN+FP));
-fprintf(' F1 Score: %f\n',2 * Precision * Sensitivity / (Precision + Sensitivity) );
+%fprintf(' Sensitivity: %f\n', Sensitivity);
+Specificity = (TN)/(TN+FP);
+%fprintf(' Specificity: %f\n',Specificity );
+F1_Score = 2 * Precision * Sensitivity / (Precision + Sensitivity) ;
+%fprintf(' F1 Score: %f\n',F1_Score );
 
 end
 
