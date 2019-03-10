@@ -1,5 +1,5 @@
 function [w b]= HebbNN(x)
-% By Ibraheem Al-Dhamari  ibr_ex@hotmail.com
+
 % Hebb Learning Rule for Neural Networks
 % input x(m,n): x1,x2,b,output
 % m is the number of training samples

@@ -1,23 +1,40 @@
-function [w,b,R,RX]=hebbnnmy(A)
+%%HEBBS 
+
+%function [w,b,R,RX]=hebbnnmy(A)
 % By karan harjai 1512079
 % Hebb Learning Rule for Neural Networks
 % input A(m,n): A1,A2,...An,output
 %R is result vector without activation applied
 %RX is result vector with activation applied
-m=size(A,1);
-n=size(A,2);
-w=zeros(1,n-1);
+load('datasetA.mat');
+X = A(:, [1:30]); y = A(:,31);
+X = featureNormalize(A);
+%X = [ones(m, 1) X];
+
+
+m=size(X,1);
+n=size(X,2);
+w=zeros(1,n);
 b=0;
+tic
 for i=1:m
-    for j=1:n-1
-        w(j)=w(j)+A(i,j).*A(i,n);
+    for j=1:n
+        w(j)=w(j)+X(i,j)*y(i,1);
     end
-    b=b+A(i,n);
+    b=b+y(i,1);
 end
-R=A(:,[1:n-1])*w'+b ;
+toc
+R=X*w'+b ;
 th=mean(R);
 RX=R>=th;
-accuracy= mean(double(RX==A(:,n)) * 100) 
+accuracy = mean(double(RX==y) * 100) 
+parameters(RX,y);
+
+
+
+
+
+
 %uiimport
 %data1 = movevars(data1, 'symmetry_mean', 'After', 'VarName32');
 %A = table2array(data1(:,2:32));
